@@ -21,13 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--xnlpd8l_fcl2i8$m33*&!rax&4+3sb3+0$9$c6h)uc*o_*35^'
+# SECRET_KEY = 'django-insecure--xnlpd8l_fcl2i8$m33*&!rax&4+3sb3+0$9$c6h)uc*o_*35^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-ALLOWED_HOSTS = ["https://task-manager-1-shq1.onrender.com"]
-
+ALLOWED_HOSTS = ['django-task-manager.onrender.com', 'localhost', '127.0.0.1']
+SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key')
 
 # Application definition
 
@@ -44,15 +43,16 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # add this line
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'myapp.urls'
 
@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # Change from sqlite3
+        'ENGINE': 'django.db.backends.mysql',  
         'NAME': 'notes',
         'USER': 'root',
         'PASSWORD': 'gokul6204',
-        'HOST': 'localhost',   # or remote MySQL host
+        'HOST': 'localhost',   
         'PORT': '3306',
     }
 }
@@ -124,12 +124,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
