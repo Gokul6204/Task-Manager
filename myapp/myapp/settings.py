@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['django-task-manager.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['Task-Manager.onrender.com', 'localhost', '127.0.0.1']
 SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key')
 
 # Application definition
